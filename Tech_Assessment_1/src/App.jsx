@@ -180,7 +180,7 @@ export default function App(){
     <div className="root">
       <header className="header">
         <div>
-          <h1>Weather App — Tech Assessment 1</h1>
+          <h1>Weather Application</h1>
           <p className="muted">Search by city / postal code / landmark / coordinates. Live data from Open-Meteo.</p>
         </div>
 
@@ -242,7 +242,7 @@ export default function App(){
             <h4>Notes</h4>
             <ul className="muted">
               <li>Uses Open-Meteo (no API key).</li>
-              <li>Coordinates format: <code>lat,lon</code>.</li>
+              <li>Coordinates format: <code>latitude,longitude</code>.</li>
               <li>Replace icons with SVGs if desired.</li>
             </ul>
           </div>
@@ -255,7 +255,7 @@ export default function App(){
           {!current && !loading && (
             <div className="placeholderCard">
               <h2>Try a search</h2>
-              <p className="muted">Examples: <button className="example" onClick={()=>handleSearch('New York')}>New York</button> <button className="example" onClick={()=>handleSearch('10001')}>10001</button> <button className="example" onClick={()=>handleSearch('Eiffel Tower')}>Eiffel Tower</button></p>
+              <p className="muted">Examples : <button className="example" onClick={()=>handleSearch('New York')}>New York</button> <button className="example" onClick={()=>handleSearch('10001')}>10001</button> <button className="example" onClick={()=>handleSearch('Eiffel Tower')}>Eiffel Tower</button></p>
             </div>
           )}
 
@@ -288,12 +288,12 @@ export default function App(){
         <aside className="rightPane card">
           <h4>About</h4>
           <p className="muted">This app demonstrates API integration, geocoding, geolocation, persistence and export capability for the Tech Assessment.</p>
-          <p className="muted" style={{marginTop:8}}>Your name: <strong>ANUJ MISHRA</strong></p>
+          <p className="muted" style={{marginTop:8}}>Made By : <strong>Anuj Mishra</strong></p>
         </aside>
       </main>
 
       <footer className="footer">
-        <small>Data via Open-Meteo • Built for Tech Assessment 1</small>
+        <small>Data via Open-Meteo Free to Use Not Required any API Key</small>
       </footer>
     </div>
   )
