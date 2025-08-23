@@ -1,0 +1,81 @@
+:root{
+  --bg: #f5f8fb;
+  --card: #ffffff;
+  --accent: #0ea5a4;
+  --muted: #6b7280;
+  --danger: #ef4444;
+  --glass: rgba(255,255,255,0.85);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;background:linear-gradient(180deg,var(--bg), #eef6fb)}
+.root{max-width:1100px;margin:28px auto;padding:18px}
+
+/* header */
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.header h1{margin:0;font-size:1.3rem}
+.muted{color:var(--muted);font-size:0.95rem}
+
+/* controls */
+.controls{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.searchRow{display:flex;gap:8px;width:100%;max-width:760px}
+.searchRow input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6eef3;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+.btn{background:var(--accent);color:white;padding:9px 12px;border-radius:10px;border:0;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid #e6eef3;color:inherit}
+.btn.small{padding:6px 8px}
+.link{background:none;border:0;color:var(--accent);cursor:pointer}
+.smallControls{display:flex;align-items:center;gap:12px;margin-top:6px}
+.toggle{display:flex;align-items:center;gap:8px}
+.toggle input{transform:scale(1.1)}
+
+/* main layout */
+.mainContent{display:grid;grid-template-columns:260px 1fr 220px;gap:16px;margin-top:16px}
+.leftPane{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+.smallCard{font-size:0.95rem}
+.recentList{list-style:none;padding:0;margin:8px 0;display:flex;flex-direction:column;gap:8px}
+.recentItem{display:flex;justify-content:space-between;align-items:center}
+.recentBtn{background:transparent;border:0;text-align:left;cursor:pointer;font-weight:600}
+.recentTime{color:var(--muted);font-size:0.8rem}
+.actionsRow{display:flex;justify-content:space-between;margin-top:8px}
+.exportRow{display:flex;gap:8px;margin-top:8px}
+
+/* center pane */
+.centerPane{display:flex;flex-direction:column;gap:12px}
+.placeholderCard{background:linear-gradient(180deg,#ffffff,#fbfeff);padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.05);text-align:center}
+.example{border:0;background:transparent;color:var(--accent);cursor:pointer}
+
+.loading{padding:12px;color:var(--muted)}
+.error{padding:12px;background:#fee2e2;color:var(--danger);border-radius:10px}
+
+/* weather card */
+.weatherCard{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:16px;align-items:center}
+.bigIcon{font-size:56px;width:96px;height:96px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,#f2fbff);box-shadow:0 8px 30px rgba(2,6,23,0.04)}
+.mainInfo{flex:1}
+.place{font-weight:700;font-size:1.1rem}
+.temp{font-size:2.2rem;font-weight:700;margin-top:4px}
+.meta{color:var(--muted);margin-top:6px}
+.detailsRow{display:flex;gap:12px;justify-content:space-between}
+
+/* utility */
+.utilityRow{display:flex;gap:8px;margin-top:8px}
+
+/* forecast grid */
+.forecastGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px}
+.forecastCard{padding:10px;border-radius:10px;background:#fff;box-shadow:0 8px 20px rgba(2,6,23,0.04)}
+.forecastCard .date{font-weight:700}
+.forecastCard .values{margin-top:6px}
+.forecastCard .precip{margin-top:8px;color:var(--muted)}
+
+/* small screens */
+@media (max-width: 920px){
+  .mainContent{grid-template-columns:1fr; padding-bottom:20px}
+  .leftPane, .rightPane{order:2}
+  .centerPane{order:1}
+}
+
+/* footer */
+.footer{text-align:center;margin-top:18px;color:var(--muted);font-size:0.9rem}
+code{background:#f1f5f9;padding:2px 6px;border-radius:6px}

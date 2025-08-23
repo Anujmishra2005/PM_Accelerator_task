@@ -1,12 +1,15 @@
-function ForecastCard({ data }) {
-  const date = new Date(data.dt * 1000);
-  return (
-    <div className="bg-white text-black rounded-xl p-4 shadow-md text-center">
-      <h3 className="font-bold">{date.toLocaleDateString("en-US", { weekday: "short" })}</h3>
-      <p>{Math.round(data.main.temp)}°C</p>
-      <p className="capitalize">{data.weather[0].description}</p>
-    </div>
-  );
-}
+import React from 'react'
 
-export default ForecastCard;
+export default function ForecastCard({ date, max, min, precip, prettyTemp }){
+  const dt = new Date(date)
+  return (
+    <div className="forecastCard">
+      <div className="date">{dt.toLocaleDateString(undefined, {weekday:'short', month:'short', day:'numeric'})}</div>
+      <div className="values">
+        <div className="max">{prettyTemp(max)}</div>
+        <div className="min">Min {prettyTemp(min)}</div>
+      </div>
+      <div className="precip">Precip: {precip} mm</div>
+    </div>
+  )
+}
