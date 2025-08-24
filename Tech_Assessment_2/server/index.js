@@ -1,4 +1,3 @@
-// Tech_Assessment_2/server/index.js
 import express from "express";
 import cors from "cors";
 import Database from "better-sqlite3";
@@ -15,7 +14,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Create table
 db.exec(`
 CREATE TABLE IF NOT EXISTS queries (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,13 +27,11 @@ CREATE TABLE IF NOT EXISTS queries (
 );
 `);
 
-// Helpers
 function isoDate(s) {
   return /^\d{4}-\d{2}-\d{2}$/.test(s);
 }
 
 async function geocode(query) {
-  // Use Open-Meteo geocoding (no key)
   const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5`;
   const res = await fetch(url);
   if (!res.ok) return null;
@@ -58,7 +54,6 @@ async function fetchDaily(lat, lon, from, to) {
   return await res.json();
 }
 
-// CREATE - add a saved query (location + date range -> store result)
 app.post("/api/queries", async (req, res) => {
   try {
     const { location, fromDate, toDate } = req.body;
@@ -66,7 +61,6 @@ app.post("/api/queries", async (req, res) => {
     if (!isoDate(fromDate) || !isoDate(toDate)) return res.status(400).json({ error: "Dates must be YYYY-MM-DD" });
     if (new Date(fromDate) > new Date(toDate)) return res.status(400).json({ error: "fromDate must be <= toDate" });
 
-    // coordinates format? "lat,lon"
     let lat, lon, placeName;
     const parts = location.split(",").map(p => p.trim());
     if (parts.length === 2 && !isNaN(parseFloat(parts[0])) && !isNaN(parseFloat(parts[1]))) {
@@ -75,7 +69,6 @@ app.post("/api/queries", async (req, res) => {
       const rev = await reverseGeocode(lat, lon);
       placeName = rev?.address && (rev.address.city || rev.address.town || rev.address.village || rev.address.country) || `${lat.toFixed(3)},${lon.toFixed(3)}`;
     } else {
-      // geocode fuzzy match
       const geo = await geocode(location);
       if (!geo) return res.status(400).json({ error: "Location not found" });
       lat = geo.latitude;
@@ -99,7 +92,6 @@ app.post("/api/queries", async (req, res) => {
   }
 });
 
-// READ - list queries (with optional limit / offset / search)
 app.get("/api/queries", (req, res) => {
   const { q, limit = 50, offset = 0 } = req.query;
   try {
@@ -118,12 +110,10 @@ app.get("/api/queries", (req, res) => {
   }
 });
 
-// READ one by id (full result)
 app.get("/api/queries/:id", (req, res) => {
   const id = Number(req.params.id);
   const row = db.prepare("SELECT * FROM queries WHERE id = ?").get(id);
   if (!row) return res.status(404).json({ error: "Not found" });
-  // parse JSON result before returning
   try {
     row.result = JSON.parse(row.result);
   } catch (e) {
@@ -132,7 +122,6 @@ app.get("/api/queries/:id", (req, res) => {
   res.json(row);
 });
 
-// UPDATE - update location or date range; re-geocode & refetch result
 app.put("/api/queries/:id", async (req, res) => {
   try {
     const id = Number(req.params.id);
@@ -141,7 +130,6 @@ app.put("/api/queries/:id", async (req, res) => {
     if (!isoDate(fromDate) || !isoDate(toDate)) return res.status(400).json({ error: "Dates must be YYYY-MM-DD" });
     if (new Date(fromDate) > new Date(toDate)) return res.status(400).json({ error: "fromDate must be <= toDate" });
 
-    // Determine lat/lon from location (either coords or geocode)
     let lat, lon, placeName;
     const parts = location.split(",").map(p => p.trim());
     if (parts.length === 2 && !isNaN(parseFloat(parts[0])) && !isNaN(parseFloat(parts[1]))) {
@@ -169,7 +157,6 @@ app.put("/api/queries/:id", async (req, res) => {
   }
 });
 
-// DELETE
 app.delete("/api/queries/:id", (req, res) => {
   try {
     const id = Number(req.params.id);
@@ -181,8 +168,13 @@ app.delete("/api/queries/:id", (req, res) => {
   }
 });
 
-// Simple health
 app.get("/api/health", (req, res) => res.json({ ok: true, ts: new Date().toISOString() }));
+
+const clientBuildPath = path.join(__dirname, "../client/dist");
+app.use(express.static(clientBuildPath));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(clientBuildPath, "index.html"));
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
