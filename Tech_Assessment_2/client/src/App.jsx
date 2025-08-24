@@ -50,7 +50,7 @@ export default function App() {
   return (
     <div className="ta2-root">
       <header className="ta2-header">
-        <h1>Weather App — Advanced (Tech Assessment 2)</h1>
+        <h1>Weather Application With Advanced Features</h1>
         <p className="muted">Create a saved weather query (location + date range), then Read / Update / Delete it.</p>
       </header>
 
@@ -75,7 +75,7 @@ export default function App() {
       </main>
 
       <footer className="ta2-footer">
-        <small>Server: Open-Meteo; Client: React + Vite • Built for Tech Assessment</small>
+        <small>Server: Open-Meteo; Client: React + Vite </small>
       </footer>
     </div>
   );
