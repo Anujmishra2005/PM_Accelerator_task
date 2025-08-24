@@ -106,11 +106,11 @@ PM_Accelerator_task/
 <tr>
 <td align="center">
 <h3>🌤️ Basic Weather Forecast App</h3>
-<a href="https://pm-accelerator-weather.vercel.app" target="_blank">
+<a href="https://tech-assessment-1.netlify.app" target="_blank">
 <img src="https://via.placeholder.com/400x280/3b82f6/ffffff?text=🌤️+Basic+Weather+Dashboard" alt="Weather App Screenshot"/>
 </a>
 <br>
-<a href="https://pm-accelerator-weather.vercel.app" target="_blank">
+<a href="https://tech-assessment-1.netlify.app" target="_blank">
 <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-3b82f6?style=for-the-badge&logo=vercel"/>
 </a>
 <br>
@@ -121,11 +121,11 @@ PM_Accelerator_task/
 </td>
 <td align="center">
 <h3>🌩️ Advanced Weather Manager</h3>
-<a href="https://pm-accelerator-advanced-weather.netlify.app" target="_blank">
+<a href="https://tech-assessment-2.netlify.app" target="_blank">
 <img src="https://via.placeholder.com/400x280/f59e0b/ffffff?text=🌩️+Advanced+Weather+CRUD" alt="Advanced Weather App Screenshot"/>
 </a>
 <br>
-<a href="https://pm-accelerator-advanced-weather.netlify.app" target="_blank">
+<a href="https://tech-assessment-2.netlify.app " target="_blank">
 <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-f59e0b?style=for-the-badge&logo=netlify"/>
 </a>
 <br>
